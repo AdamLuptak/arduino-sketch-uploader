@@ -1,5 +1,10 @@
 package com.aluptak;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zeroturnaround.exec.ProcessExecutor;
@@ -9,12 +14,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class Main {
+public class Main extends Application {
+
     final static Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    private Parent rootNode;
 
+    public static void main(final String[] args) {
+        Application.launch(args);
+    }
 
+    @Override
+    public void init() throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        rootNode = fxmlLoader.load();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        stage.setScene(new Scene(rootNode));
+        stage.show();
+    }
+
+    public void commandLine(){
         try {
             new ProcessExecutor()
                     .directory(new File("C:\\Users\\adam\\git\\ecap\\arduino"))
@@ -31,4 +53,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }

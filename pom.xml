@@ -45,7 +45,7 @@
                 <version>8.6.0</version>
                 <configuration>
                     <vendor>aluptak</vendor>
-                    <mainClass>com.aluptak.Main</mainClass>
+                    <mainClass>com.aluptak.JavaFx</mainClass>
                 </configuration>
                 <executions>
                     <execution>
